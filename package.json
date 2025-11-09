@@ -1,0 +1,12 @@
+{
+  "name": "lab-approval-workflow",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "publish-lab": "node scripts/publish-lab.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.5.0"
+  }
+}
+

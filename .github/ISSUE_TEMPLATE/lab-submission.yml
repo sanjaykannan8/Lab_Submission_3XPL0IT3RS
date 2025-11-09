@@ -1,0 +1,60 @@
+name: "Lab Challenge Submission"
+description: "Submit a new lab challenge for approval. Please fill in every required field."
+title: "[Lab] "
+labels:
+  - pending-review
+body:
+  - type: input
+    id: submitter_name
+    attributes:
+      label: "Submitter Name"
+      description: "Who is submitting this lab?"
+      placeholder: "e.g., Priya K."
+    validations:
+      required: true
+  - type: input
+    id: challenge_name
+    attributes:
+      label: "Challenge Name"
+      description: "A clear, concise title for the challenge."
+      placeholder: "e.g., HTTP Headers Hunt"
+    validations:
+      required: true
+  - type: dropdown
+    id: challenge_type
+    attributes:
+      label: "Challenge Type"
+      description: "Select the primary category."
+      options:
+        - Web
+        - Crypto
+        - Forensics
+        - Reverse Engineering
+        - Pwn
+        - OSINT
+        - Misc
+    validations:
+      required: true
+  - type: textarea
+    id: challenge_description
+    attributes:
+      label: "Challenge Description"
+      description: "Overview of the challenge, key hints, intended difficulty, and any setup notes."
+      placeholder: "Explain the challenge scenario, objectives, and any prerequisites."
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: "Solution"
+      description: "Detailed solution or walkthrough the players should eventually discover."
+      placeholder: "Step-by-step solution, including commands, payloads, or scripts."
+    validations:
+      required: true
+  - type: textarea
+    id: extra_details
+    attributes:
+      label: "Extra Details"
+      description: "Any additional context, files, artifacts, or links you'd like to include."
+      placeholder: "Share anything else the reviewers should know."
+
