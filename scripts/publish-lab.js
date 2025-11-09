@@ -74,6 +74,7 @@ async function main() {
     extractField('Challenge Description'),
     'Challenge Description',
   );
+  const flag = ensureValue(extractField('Flag'), 'Flag');
   const solution = ensureValue(extractField('Solution'), 'Solution');
   const extraDetails = extractField('Extra Details');
 
@@ -84,14 +85,20 @@ async function main() {
     ? Timestamp.fromDate(new Date(issueCreatedAt))
     : approvedTimestamp;
 
+  // Hash the flag for secure storage (SHA-256)
+  const crypto = require('crypto');
+  const flagHash = crypto.createHash('sha256').update(flag.trim()).digest('hex');
+
   const labPayload = {
     title: challengeName,
     description: challengeDescription,
     challengeType,
     authorName: submitterName,
+    flagHash, // Store only the hash, never the plain flag
     solution,
     extraNotes: extraDetails || null,
     pointsToUnlock: DEFAULT_POINTS_TO_UNLOCK,
+    pointsReward: 10, // Points awarded for correct flag submission
     status: 'published',
     approvedAt: approvedTimestamp,
     approvedBy: approvedByLogin,
@@ -106,7 +113,7 @@ async function main() {
 
   await db.collection('labs').doc(docId).set(labPayload, { merge: true });
 
-  console.log('Lab published successfully.');
+  console.log('Lab published successfully with flag hash.');
 }
 
 main().catch((error) => {

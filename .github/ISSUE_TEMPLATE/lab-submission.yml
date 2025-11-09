@@ -43,6 +43,14 @@ body:
       placeholder: "Explain the challenge scenario, objectives, and any prerequisites."
     validations:
       required: true
+  - type: input
+    id: flag
+    attributes:
+      label: "Flag"
+      description: "The correct flag for this challenge (format: flag{...} or custom format)"
+      placeholder: "e.g., flag{s3cur3_h34d3rs_ftw}"
+    validations:
+      required: true
   - type: textarea
     id: solution
     attributes:
